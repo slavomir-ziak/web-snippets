@@ -1,0 +1,94 @@
+<!doctype html>
+<html class="main-layout">
+<head>
+    <script type="text/javascript" src="/node_modules/rx/dist/rx.all.js"></script>
+    <script type="text/javascript" src="/node_modules/immutable/dist/immutable.js"></script>
+
+    <script type="text/javascript" src="/node_modules/react/dist/react.js"></script>
+    <script type="text/javascript" src="/node_modules/react-dom/dist/react-dom.js"></script>
+
+    <script type="text/javascript" src="/node_modules/re-framejs/dist/reframe.js"></script>
+
+
+</head>
+<body>
+    <div id="container" ></div>
+
+    <script type="text/javascript" >
+/*
+        var root = { a: 1 };
+
+        var db$ = reframe.atom(Immutable.Map(root)); //  our root atom  (signal)
+
+        var atom2 = db$.map(function (db) {
+            return Immutable.Map({ b: db.get('a') });
+        });
+        //map wraps a computation, returns a signal
+
+        var atom3 = atom2.map(function (db) {
+            if (db.get('b') === 0) {
+                return 'World';
+            } else if (db.get('b') === 1) {
+                return 'Hello';
+            }
+        }); // map wraps another computation
+
+        // Notice that both transformations above return a new stream.
+        // Those new streams hold the (time varying) value of the computations.
+
+        console.log(reframe.deref(atom2).toJS());   // ==>  {:b 1}       ;; a computed result, involving db$
+        console.log(reframe.deref(atom3));          // ==> "Hello"       ;; a computed result, involving atom2
+
+
+        reframe.reset(db$, Immutable.Map({a: 0}));    // this change to db$, triggers re-computation
+        // of atom2
+        // which, in turn, causes a re-computation of atom3
+
+        console.log(reframe.deref(atom2).toJS());     // ==>  {:b 0}       ;; atom2 is a computed result, involving db$
+        console.log(reframe.deref(atom3));     // ==> "World"       ;; atom3 is automatically updated too
+
+*/
+
+    reframe.registerHandler('initDb', function (db) {
+        return Immutable.Map({name: "Peter"});
+    });
+
+    reframe.registerHandler('name-changed', function () {
+        return Immutable.Map({name: "Slavo"});
+    });
+
+    reframe.registerSub('name', function(){
+        return reframe.indexPath(['name'], 'DefaultName');
+    });
+
+    // our view function is now wrapped with reframe.view
+    var createGreeting = reframe.view('Greet', function () {
+
+        var value = this.derefSub(['name']);
+        //console.log(value);
+
+        return React.DOM.div({onClick: function(){
+            reframe.dispatchSync(['name-changed']);
+        }}, 'Hello ' + value);
+    });
+
+    var greeting = createGreeting();
+
+    ReactDOM.render(greeting, document.getElementById("container"));
+
+    reframe.dispatchSync(['initDb']);
+
+
+    reframe.registerSub('beta/test-show-main-loader', function(){ return reframe.indexPath(['name'])}, true);
+
+    reframe
+        .subscribe(['beta/test-show-main-loader'])
+        .subscribe(function(value) { console.log('value: ' + value)});
+
+    // kratsi sposob:
+    reframe.indexPath(['name']).subscribe(function(value) { console.log('value: ' + value)});
+
+    </script>
+</body>
+
+</html>
