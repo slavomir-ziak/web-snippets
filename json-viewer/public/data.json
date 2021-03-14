@@ -1,0 +1,29 @@
+[{
+    "@timestamp": "2021-03-13T22:34:59.045+01:00",
+    "@version": "1",
+    "message": "Result BetslipId[40f8fca6-31b3-4d0c-a938-0bfdfe9c374f] - SubmitBetslipCmd[betslipId=BetslipId[40f8fca6-31b3-4d0c-a938-0bfdfe9c374f], delay=400, submitResult=Accepted]",
+    "logger_name": "sk.nike.frontend.betslip.submitter.simple.CreateBetslipTask",
+    "thread_name": "pool-7-thread-2",
+    "level": "DEBUG",
+    "req_session": "049e8336-e3a8-4ec3-ad2f-b4293ec738a0",
+    "req_uuid": "9f0ea881-8e5b-4804-8a4f-523169d9af9d",
+    "application": "nike-mobile",
+    "environment": "prod",
+    "host": "prod-mobile3.nike.sk"
+  },
+
+  {
+    "bot_reason": "povolena_krajina_SK",
+    "bot_action": "allow",
+    "req_userAgent": "Nik%C3%A9/253 CFNetwork/1197 Darwin/20.0.0",
+    "req_contentType": "application/json;charset=utf-8",
+    "req_time": "9",
+    "req_native_os": "iOS",
+
+    "lb_server_ip": "192.168.169.48",
+    "lb_server_port": "38080",
+    "botdefence_cookie": "",
+    "environment": "prod",
+    "application": "bigip-access",
+    "@timestamp": "2021-03-13T22:37:03.000000000+01:00"
+  }]
