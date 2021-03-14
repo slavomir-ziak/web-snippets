@@ -82,7 +82,7 @@ export default class App extends React.Component {
             );
           })}
         </Grid>
-        <DataTable json={this.state.json} header={this.state.header}></DataTable>
+        <DataTable data={this.state.json} header={this.state.header}></DataTable>
       </div>
     );
   }

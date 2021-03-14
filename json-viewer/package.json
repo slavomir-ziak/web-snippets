@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
+    "@material-ui/data-grid": "^4.0.0-alpha.22",
     "big.js": "^5.2.2",
+    "data-grid": "^3.0.0",
     "github-fork-ribbon-css": "^0.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
