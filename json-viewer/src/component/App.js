@@ -67,17 +67,18 @@ export default class App extends React.Component {
       <div style={{flexGrowL:1}}>
         <input type="file" rows="50" cols="100" onChange={(e) => readSingleFile(e, this.handleNewJson)} />
 
-        <Grid container spacing={3}>
+        <Grid container spacing={0}>
           {this.state.headerFull.map(header => {  
             return (
-              <Grid item xs={3}>
-              <FormControlLabel control={
-                <Checkbox
-                checked={this.state.header.includes(header)}
-                onChange={() => this.toggleHeader(header)} 
-                inputProps={{ 'aria-label': header }} /> } 
-                label={header}
-              />
+              <Grid item xs={2}>
+                <FormControlLabel control={
+                    <Checkbox
+                    checked={this.state.header.includes(header)}
+                    onChange={() => this.toggleHeader(header)} 
+                    inputProps={{ 'aria-label': header }} /> 
+                  } 
+                  label={header}
+                />
               </Grid>
             );
           })}

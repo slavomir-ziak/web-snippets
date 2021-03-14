@@ -7,7 +7,7 @@ export default function DataTable({header, data}) {
 
     const columns = header.map(h => { return { field: h, headerName: h, sortable: true, flex: 1};});
     
-    columns.splice(0, 0, {field: 'index', headerName: '#', flex: 1})
+    columns.splice(0, 0, {field: 'index', headerName: '#'})
 
     const rows = data.map((item, index) => {
       const row = header.reduce((acc, h) => { acc[h] = item[h]; return acc;}, {id: index});
